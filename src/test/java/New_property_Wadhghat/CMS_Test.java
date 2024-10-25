@@ -16,7 +16,7 @@ import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 //import com.github.dockerjava.api.model.Info;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+//import io.github.bonigarcia.wdm.WebDriverManager;
 import pojo.CMS_browser;
 import pom.AddTaxesPage;
 import pom.ApprovalPage;
@@ -64,6 +64,7 @@ public class CMS_Test extends BaseDriver{
 		loginpage.Enter_user_name(userid, driver);
 		
 		loginpage.Enter_password(password);
+		//Thread.sleep(10000);						//for otp in baramati
 		loginpage.Click_login_btn(driver);
 		
 		try

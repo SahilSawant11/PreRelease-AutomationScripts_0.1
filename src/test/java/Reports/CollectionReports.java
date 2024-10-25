@@ -45,6 +45,7 @@ public class CollectionReports extends BaseDriver {
 		loginpage.Enter_user_name(userid, driver);
 		
 		loginpage.Enter_password(password);
+		Thread.sleep(10000);
 		loginpage.Click_login_btn(driver);
 		
 		try
@@ -59,12 +60,17 @@ public class CollectionReports extends BaseDriver {
 			
 		}
 	}
-	
+	@Test(priority = 2)
 	public void collectiontest() throws InterruptedException {
-		Thread.sleep(null);
+		Thread.sleep(5000);
 		CollectionReportsPage collectionpage = new CollectionReportsPage(driver);
 		collectionpage.CollectionReports_link(url, driver);
-		
+		collectionpage.Select_template(driver);
+		Thread.sleep(10000);
+		collectionpage.scrollToBottom(driver);
+		collectionpage.Click_date_box(driver,"1");
+		Thread.sleep(5000);
+		collectionpage.Click_generate_btn(driver);
 	}
 	
 		

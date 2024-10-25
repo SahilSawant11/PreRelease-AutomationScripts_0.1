@@ -2,76 +2,125 @@ package pom;
 
 import java.time.Duration;
 
-import org.openqa.selenium.Keys;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class CollectionReportsPage {
 	
-	@FindBy(xpath = "//input[@id='ContentPlaceHolder1_rbtPropertyUniqueNo']") private WebElement upic_code_checkbox;
-	@FindBy(xpath = "//input[@id='ContentPlaceHolder1_rbtPropertyWise']") private WebElement property_no_radio_btn;
-	@FindBy(xpath = "//select[@name='ctl00$ContentPlaceHolder1$ddlNodeNo']") private WebElement node_no;
-	@FindBy(xpath = "//select[@name='ctl00$ContentPlaceHolder1$ddlSectorNo']") private WebElement sector_no;
-	@FindBy(xpath = "//select[@name='ctl00$ContentPlaceHolder1$ddlSectorNo']//option") private WebElement sector_options;
-	@FindBy(xpath = "//input[@name='ctl00$ContentPlaceHolder1$txtPropertyNo']") private WebElement property_no;
-	@FindBy(xpath = "//a[@id='ContentPlaceHolder1_btnGetProperty']") private WebElement search_property;
+	@FindBy(xpath = "//select[@id='ContentPlaceHolder1_ddlReportType']") private WebElement template;
+	@FindBy(xpath = "//select[@name='ctl00$ContentPlaceHolder1$DDLZoneSectionNo']") private WebElement zone;
+	@FindBy(xpath = "//select[@id='ContentPlaceHolder1_ddlFinanceYear']") private WebElement finance_year;
+	@FindBy(xpath = "//select[@name='ctl00$ContentPlaceHolder1$ddlPaymentResource']") private WebElement payment_source;
+	@FindBy(xpath = "//select[@name='ctl00$ContentPlaceHolder1$ddlPayOption']") private WebElement pay_option;
+	@FindBy(xpath = "//select[@name='ctl00$ContentPlaceHolder1$ddlStatus']") private WebElement status;
+	@FindBy(xpath = "//button[@id='ContentPlaceHolder1_GVPaymentMode_chkAll']") private WebElement paymode_checkALl;
+	@FindBy(xpath = "//button[@id='ContentPlaceHolder1_GVWard_chkAll']") private WebElement ward_checkAll;
+	@FindBy(name = "ctl00$ContentPlaceHolder1$txtFromDate") private WebElement from_date_box;
+	@FindBy(id ="ContentPlaceHolder1_btnCollRpt" ) private WebElement generate_button;
 	
-	
-	
-	public void Click_upic_code_checkbox() throws InterruptedException
+	public CollectionReportsPage (WebDriver driver)
 	{
-		Thread.sleep(1000);
-		upic_code_checkbox.click();
+		PageFactory.initElements(driver, this);
 	}
 	
-	public void Click_property_no_radio_btn(WebDriver driver)
-	{			
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(120000));
-		wait.until(ExpectedConditions.visibilityOf(property_no_radio_btn));
-		
-		property_no_radio_btn.click();
-	}
-	
-	public void Select_node_no(WebDriver driver,String str)
+	public void Select_template(WebDriver driver)
 	{
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(20000));
-		wait.until(ExpectedConditions.visibilityOf(node_no));
-		Select node = new Select(node_no);
-		node.selectByValue(str);
+		wait.until(ExpectedConditions.visibilityOf(template));
+		Select node = new Select(template);
+		node.selectByValue("1");
 	}
 	
-	public void Select_sector_no(WebDriver driver, String str)
+	public void Select_zone(WebDriver driver)
 	{
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(120000));
-		wait.until(ExpectedConditions.visibilityOf(sector_options));
-		Select sector = new Select(sector_no);
-		sector.selectByValue(str);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(20000));
+		wait.until(ExpectedConditions.visibilityOf(zone));
+		Select node = new Select(zone);
+		node.selectByValue("0");
 	}
 	
-	public void Enter_property_no(WebDriver driver, String str) throws InterruptedException
+	public void Select_all_wards(WebDriver driver)
 	{
-		property_no.sendKeys(str);
-		Thread.sleep(2000);
-		
-		
-		
-		  if (str.contains("-")) {
-			  property_no.sendKeys(Keys.ARROW_DOWN);
-				property_no.sendKeys(Keys.ENTER);
-	        } else {
-	          
-	        }
-		  
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(20000));
+		wait.until(ExpectedConditions.visibilityOf(ward_checkAll));
+		ward_checkAll.click();
 	}
 	
-	public void Click_search_property() throws InterruptedException
+	public void Select_all_payment_modes(WebDriver driver)
 	{
-		Thread.sleep(1000);
-		search_property.click();
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(20000));
+		wait.until(ExpectedConditions.visibilityOf(paymode_checkALl));
+		paymode_checkALl.click();
+	}
+	
+	public void Select_fincance_year(WebDriver driver)
+	{
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(20000));
+		wait.until(ExpectedConditions.visibilityOf(finance_year));
+		Select node = new Select(finance_year);
+		node.selectByValue("0");
+	}
+	
+	public void Select_payment_source(WebDriver driver)
+	{
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(20000));
+		wait.until(ExpectedConditions.visibilityOf(payment_source));
+		Select node = new Select(payment_source);
+		node.selectByValue("0");
+	}
+	
+	public void Select_payment_option_cheque(WebDriver driver)
+	{
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(20000));
+		wait.until(ExpectedConditions.visibilityOf(zone));
+		Select node = new Select(pay_option);
+		node.selectByValue("2");
+	}
+	
+	public void status_cleared(WebDriver driver)
+	{
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(20000));
+		wait.until(ExpectedConditions.visibilityOf(zone));
+		Select node = new Select(status);
+		node.selectByValue("1");
+	}
+	
+	public void status_inprocess(WebDriver driver)
+	{
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(20000));
+		wait.until(ExpectedConditions.visibilityOf(zone));
+		Select node = new Select(status);
+		node.selectByValue("2");
+	}
+	
+	public void status_notCleared(WebDriver driver)
+	{
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(20000));
+		wait.until(ExpectedConditions.visibilityOf(zone));
+		Select node = new Select(status);
+		node.selectByValue("3");
+	}
+	
+	public void Click_date_box(WebDriver driver, String date)
+	{
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+		from_date_box.click();
+		String xpath = String.format("//div[@id='ContentPlaceHolder1_CalendarExtender3_days']//div[text()='%s']", date);
+        WebElement dateElement = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(xpath)));
+        dateElement.click();
+	}
+	
+	public void Click_generate_btn(WebDriver driver)
+	{
+		//WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		generate_button.click();
 	}
 	
 	public void CollectionReports_link(String url, WebDriver driver) throws InterruptedException
@@ -89,5 +138,12 @@ public class CollectionReportsPage {
 		
 		driver.get(s2);
 	}
+	
+	// Method to scroll to the bottom of the page
+	public void scrollToBottom(WebDriver driver) {
+	    JavascriptExecutor js = (JavascriptExecutor) driver;
+	    js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
+	}
+
 
 }

@@ -31,6 +31,7 @@ public class CMS_browser {
 			WebDriver driver = new ChromeDriver(options);
 
 		driver.manage().window().maximize();
+		//driver.get("http://testbaramatimc.ptaxcollection.com:8080/Pages/Login.aspx");
 		driver.get(url);
 		
 		return driver;

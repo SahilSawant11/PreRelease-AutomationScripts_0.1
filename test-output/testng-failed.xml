@@ -3,14 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="New_property_Wadhghat.MinorChanges">
+      <class name="Reports.QualityControlReports">
         <methods>
-          <include name="aftermethod"/>
-          <include name="performMinorChangeAndVerify"/>
-          <include name="loginPage"/>
           <include name="beforetest"/>
+          <include name="Defaulter_report_test"/>
+          <include name="tearDown"/>
         </methods>
-      </class> <!-- New_property_Wadhghat.MinorChanges -->
+      </class> <!-- Reports.QualityControlReports -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
