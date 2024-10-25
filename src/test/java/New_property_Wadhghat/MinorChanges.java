@@ -17,7 +17,7 @@ import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 //import com.aventstack.extentreports.util.Assert;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+//import io.github.bonigarcia.wdm.WebDriverManager;
 import pojo.CMS_browser;
 //import pom.CounterPaymentPage;
 import pom.LoginPage;
@@ -86,9 +86,9 @@ public class MinorChanges extends BaseDriver {
 	    
 	    OfflinePaymentPage offlinepaymentpage = new OfflinePaymentPage(driver);
 	    offlinepaymentpage.Click_property_no_radio_btn(driver);
-	    offlinepaymentpage.Select_node_no(driver, node);
-	    offlinepaymentpage.Select_sector_no(driver, sector);
-	    offlinepaymentpage.Enter_property_no(driver, PropertyNo);
+	    offlinepaymentpage.Select_node_no(driver, node1);
+	    offlinepaymentpage.Select_sector_no(driver, sector1);
+	    offlinepaymentpage.Enter_property_no(driver, PropertyNo1);
 	    
 	    stopWatch.reset();
 	    stopWatch.start();
@@ -115,7 +115,7 @@ public class MinorChanges extends BaseDriver {
 	    String storedMobileNo = MinorChangesPage.getStoredValue("MobileNo"); // Get stored value
 	    String storedSocietyNameEng = MinorChangesPage.getStoredValue("SocietyName");
 	    String storedDhukanNav = MinorChangesPage.getStoredValue("dhukan");
-	    String storedAddress = MinorChangesPage.getStoredValue("Address");
+	//    String storedAddress = MinorChangesPage.getStoredValue("Address");
 	    
 	    String minorchangesImage = TakeScreenshoot.GetScreenshotFullBase64(driver);
 	    test.pass("Minor changes", MediaEntityBuilder.createScreenCaptureFromBase64String(minorchangesImage).build());
@@ -141,16 +141,16 @@ public class MinorChanges extends BaseDriver {
 	    offlinepaymentpage.counterPayment(driver, url);
 	    offlinepaymentpage.Click_property_no_radio_btn(driver);
 	    
-	    offlinepaymentpage.Select_node_no(driver, node);
-	    offlinepaymentpage.Select_sector_no(driver, sector);
-	    offlinepaymentpage.Enter_property_no(driver, PropertyNo);
+	    offlinepaymentpage.Select_node_no(driver, node1);
+	    offlinepaymentpage.Select_sector_no(driver, sector1);
+	    offlinepaymentpage.Enter_property_no(driver, PropertyNo1);
 	    offlinepaymentpage.Click_search_property();    
 	    Thread.sleep(10000);
 	    
 	    String spanMobileNo = minorchange.getSpanMobileNo(); // Get span value of counter
 	    String spanSocietyNav = minorchange.getSpanSocietyNav();
 	    String spanDukanNav = minorchange.getSpanDukanNav();
-	    String spanAddress = minorchange.getSpanAddress();
+	  //  String spanAddress = minorchange.getSpanAddress();
 	    test.info("Stored Mobile Number in check: " + storedMobileNo);
 	    test.info("Stored Society Name in check: " + storedSocietyNameEng);
 	    test.info("Stored Dukan Nav in check: " + storedDhukanNav);

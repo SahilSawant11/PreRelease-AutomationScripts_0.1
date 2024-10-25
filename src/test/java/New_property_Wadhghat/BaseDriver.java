@@ -18,6 +18,8 @@ import utility.TakeScreenshoot;
 public class BaseDriver {
 
 	static public String url;
+//	static public String collectionurl;
+
 	static public WebDriver driver;
 	static public ExtentSparkReporter spark;
 	static public ExtentReports extent;
@@ -195,6 +197,10 @@ public class BaseDriver {
 		c = s.getRow(1).getCell(2);
 		c.setCellType(CellType.STRING);
 		url = c.getStringCellValue();
+		
+/*		c = s.getRow(4).getCell(2);
+		c.setCellType(CellType.STRING);
+		collectionurl = c.getStringCellValue();*/
 		
 		c = s.getRow(1).getCell(3);
 		c.setCellType(CellType.STRING);
