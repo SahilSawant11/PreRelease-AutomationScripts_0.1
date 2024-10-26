@@ -37,7 +37,7 @@ import utility.TakeScreenshoot;
 public class CMS_Test extends BaseDriver{
 	JavascriptExecutor js;
 	StopWatch stopWatch;
-//	private EmailSender emailSender;
+
 
 	@BeforeTest
 	public void beforetest() throws IOException
@@ -531,7 +531,7 @@ counncil_approval.clickOnapproval(driver);
 			e.printStackTrace();
 		}
 		extent.flush();
-	//	emailSender.sendEmailWithReport("cr7sahilsawant@gmail.com", "ExtentReport.html");
+
 	}
 	
 }

@@ -2,7 +2,6 @@ package New_property_Wadhghat;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
-
 import org.apache.commons.lang3.time.StopWatch;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -10,23 +9,17 @@ import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
-//import com.aventstack.extentreports.util.Assert;
-
-//import io.github.bonigarcia.wdm.WebDriverManager;
 import pojo.CMS_browser;
-//import pom.CounterPaymentPage;
 import pom.LoginPage;
 import pom.MinorChangesPage;
 import pom.OfflinePaymentPage;
 import utility.Delete_Files;
 import utility.TakeScreenshoot;
 
-//import org.testng.annotations.Test;
 
 
 public class MinorChanges extends BaseDriver {
@@ -34,19 +27,16 @@ public class MinorChanges extends BaseDriver {
 	StopWatch stopWatch;
 	WebDriver driver;
 
-	
 	@BeforeTest
 	public void beforetest() throws IOException
 	{
 		Delete_Files Delete_files = new Delete_Files(driver);
 		System.out.println(System.getProperty("user.dir"));
 		Delete_files.Delete_files("\\PdfReports\\");
-		
 		extent = new ExtentReports();
 		spark = new ExtentSparkReporter("ExtentReport.html");
 		extent.attachReporter(spark);
 		BaseDriver.GetData();
-//		WebDriverManager.chromedriver().setup();
 		driver = CMS_browser.openBrowser(url);
 		stopWatch = new StopWatch();
 	}
@@ -115,7 +105,7 @@ public class MinorChanges extends BaseDriver {
 	    String storedMobileNo = MinorChangesPage.getStoredValue("MobileNo"); // Get stored value
 	    String storedSocietyNameEng = MinorChangesPage.getStoredValue("SocietyName");
 	    String storedDhukanNav = MinorChangesPage.getStoredValue("dhukan");
-	//    String storedAddress = MinorChangesPage.getStoredValue("Address");
+	
 	    
 	    String minorchangesImage = TakeScreenshoot.GetScreenshotFullBase64(driver);
 	    test.pass("Minor changes", MediaEntityBuilder.createScreenCaptureFromBase64String(minorchangesImage).build());
@@ -147,14 +137,14 @@ public class MinorChanges extends BaseDriver {
 	    offlinepaymentpage.Click_search_property();    
 	    Thread.sleep(10000);
 	    
-	    String spanMobileNo = minorchange.getSpanMobileNo(); // Get span value of counter
+	    String spanMobileNo = minorchange.getSpanMobileNo(); 
 	    String spanSocietyNav = minorchange.getSpanSocietyNav();
 	    String spanDukanNav = minorchange.getSpanDukanNav();
-	  //  String spanAddress = minorchange.getSpanAddress();
+	  
 	    test.info("Stored Mobile Number in check: " + storedMobileNo);
 	    test.info("Stored Society Name in check: " + storedSocietyNameEng);
 	    test.info("Stored Dukan Nav in check: " + storedDhukanNav);
-	 //   test.info("Stored Stored Address in check: " + storedAddress);// abandon 
+	 
 
 	    if (!spanMobileNo.equals(storedMobileNo)) {
 	        throw new AssertionError("The stored mobile number does not match the displayed number! "
@@ -178,16 +168,7 @@ public class MinorChanges extends BaseDriver {
 	    } else {
 	        // Log that the values match
 	        test.info("The stored Dhukan nav matches the displayed nav: " + storedDhukanNav);
-	    }
-	    
-	  /*  if (!spanAddress.equals(storedAddress)) {
-	        throw new AssertionError("The stored Address does not match the displayed Address! "
-	                + "Stored: " + storedAddress + ", Displayed: " + spanAddress);
-	    } else {
-	        // Log that the values match
-	        test.info("The stored Address matches the displayed Adress: " + storedAddress);
-	    }
-	    */ // abandon
+	    } 
 	    String minorchangesImage2 = TakeScreenshoot.GetScreenshotFullBase64(driver);
 	    test.pass("Counter after minor changes", MediaEntityBuilder.createScreenCaptureFromBase64String(minorchangesImage2).build());
 	}

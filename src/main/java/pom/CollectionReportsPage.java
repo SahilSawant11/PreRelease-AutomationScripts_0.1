@@ -138,8 +138,7 @@ public class CollectionReportsPage {
 		
 		driver.get(s2);
 	}
-	
-	// Method to scroll to the bottom of the page
+
 	public void scrollToBottom(WebDriver driver) {
 	    JavascriptExecutor js = (JavascriptExecutor) driver;
 	    js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
