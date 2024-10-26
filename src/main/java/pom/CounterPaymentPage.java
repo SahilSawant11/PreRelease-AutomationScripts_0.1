@@ -78,11 +78,15 @@ public class CounterPaymentPage {
 	
 	
 	@FindBy(xpath = "//*[@id='ContentPlaceHolder1_btnPayProceed']") private WebElement pay_now;
+	@FindBy(xpath = "//*[@id='ContentPlaceHolder1_PayProceedbtn']") private WebElement PCMC_pay_now;
 	@FindBy(xpath = "/html/body/div[3]/div[7]/div/button") private WebElement confirm_yes;
+	@FindBy(xpath = "//*[@id='ContentPlaceHolder1_GVPropTax']/tbody/tr[4]/td[2]/input") private WebElement PCMC_confirm_yes;
 	@FindBy(xpath = "/html/body/div[2]/div/div[3]/button[1]") private WebElement NoticePopup;
 	
 	@FindBy(xpath = "//span[text()='Transaction ID Generated Succesfully']") private WebElement transction_id_msg;
 	@FindBy(xpath = "//a[@id='ContentPlaceHolder1_lblDownloadReceiptbtn']") private WebElement receipts_btn;
+	@FindBy(xpath = "//*[@id='ContentPlaceHolder1_btnGetReceipt']") private WebElement pcmc_receipts_btn;
+	
 	@FindBy(xpath = "//span[@id='ContentPlaceHolder1_lblDownloads']") private WebElement download_receipt_list;
 	@FindBy(xpath = "(//tr//td//input[@type='image'])[1]") private WebElement downloadfile1;
 	@FindBy(xpath = "//span[@id='ContentPlaceHolder1_lblAmount']") private WebElement amount;
@@ -750,6 +754,22 @@ public class CounterPaymentPage {
 		pay_now.click();
 	}
 	
+	
+	public void PCMC_Click_pay_now(WebDriver driver) throws InterruptedException
+	{
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(15000));
+		wait.until(ExpectedConditions.visibilityOf(PCMC_pay_now));
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		
+		wait.until(ExpectedConditions.elementToBeClickable(PCMC_pay_now));
+		js.executeScript("arguments[0].scrollIntoView();", PCMC_pay_now);
+		Thread.sleep(1000);
+		
+		PCMC_pay_now.click();
+	}
+	
+
+	
 	public void confirm_payment(WebDriver driver) throws InterruptedException
 	{
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(30000));
@@ -757,6 +777,21 @@ public class CounterPaymentPage {
 		Thread.sleep(2000);
 		confirm_yes.click();
 	}
+	
+	
+	public void PCMC_confirm_payment(WebDriver driver) throws InterruptedException
+	{
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(30000));
+		wait.until(ExpectedConditions.visibilityOf(PCMC_confirm_yes));
+		Thread.sleep(2000);
+		PCMC_confirm_yes.click();
+	}
+	
+	
+	
+	
+	
+	
 	
 	public boolean Check_isPropertyHasNoDue(WebDriver driver) throws InterruptedException
 	{
@@ -772,6 +807,9 @@ public class CounterPaymentPage {
 		
 		
 	}
+	
+	
+	
 	
 	
 	
@@ -831,6 +869,18 @@ public class CounterPaymentPage {
 		Thread.sleep(1000);
 		receipts_btn.click();
 	}
+	
+	
+	public void pcmc_DownloadReceipt(WebDriver driver) throws InterruptedException
+	{
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(60000));
+		wait.until(ExpectedConditions.visibilityOf(transction_id_msg));
+		Thread.sleep(1000);
+		pcmc_receipts_btn.click();
+	}
+	
+	
+	
 	
 	public void Download_pdf_file(WebDriver driver) throws InterruptedException
 	{
