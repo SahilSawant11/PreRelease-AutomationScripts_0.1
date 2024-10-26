@@ -83,8 +83,26 @@ import utility.Delete_Files;
 	        Thread.sleep(5000);
 	        qcpage.Enter_amount(driver);
 	        qcpage.Show_button(driver);
-	        
-	       
+		}
+		
+		@Test(priority = 2)
+	    public void Total_Outstanding_report_test() throws Exception {
+	        test = extent.createTest("Defaulter Report Test");
+	        QualityControlPages qcpage = new QualityControlPages(driver);
+	        qcpage.Quality_Control_Page_link(url,driver);
+	        qcpage.Select_defaulter_reports(driver);
+	        qcpage.Select_zone(driver);
+	        Thread.sleep(5000);
+	        qcpage.Select_ward(driver);
+	        Thread.sleep(5000);
+	        qcpage.Select_from_proprty(driver);
+	        Thread.sleep(5000);
+	        qcpage.Select_to_proprty(driver);
+	        Thread.sleep(5000);
+	        qcpage.Select_with_interest(driver);
+	        Thread.sleep(5000);
+	        qcpage.Enter_amount(driver);
+	        qcpage.Show_button(driver);
 		}
 		
 		

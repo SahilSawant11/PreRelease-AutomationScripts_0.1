@@ -20,8 +20,8 @@ public class CollectionReportsPage {
 	@FindBy(xpath = "//select[@name='ctl00$ContentPlaceHolder1$ddlPaymentResource']") private WebElement payment_source;
 	@FindBy(xpath = "//select[@name='ctl00$ContentPlaceHolder1$ddlPayOption']") private WebElement pay_option;
 	@FindBy(xpath = "//select[@name='ctl00$ContentPlaceHolder1$ddlStatus']") private WebElement status;
-	@FindBy(xpath = "//button[@id='ContentPlaceHolder1_GVPaymentMode_chkAll']") private WebElement paymode_checkALl;
-	@FindBy(xpath = "//button[@id='ContentPlaceHolder1_GVWard_chkAll']") private WebElement ward_checkAll;
+	@FindBy(id="ContentPlaceHolder1_GVPaymentMode_chkAll") private WebElement paymode_checkALl;
+	@FindBy( id="ContentPlaceHolder1_GVWard_chkAll") private WebElement ward_checkAll;
 	@FindBy(name = "ctl00$ContentPlaceHolder1$txtFromDate") private WebElement from_date_box;
 	@FindBy(id ="ContentPlaceHolder1_btnCollRpt" ) private WebElement generate_button;
 	

@@ -4,10 +4,12 @@ import java.io.IOException;
 
 import org.apache.commons.lang3.time.StopWatch;
 import org.openqa.selenium.JavascriptExecutor;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import org.openqa.selenium.WebDriver;
 import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 
 import New_property_Wadhghat.BaseDriver;
@@ -15,6 +17,7 @@ import pojo.CMS_browser;
 import pom.CollectionReportsPage;
 import pom.LoginPage;
 import utility.Delete_Files;
+import utility.TakeScreenshoot;
 
 public class CollectionReports extends BaseDriver {
 	JavascriptExecutor js;
@@ -62,17 +65,40 @@ public class CollectionReports extends BaseDriver {
 	}
 	@Test(priority = 2)
 	public void collectiontest() throws InterruptedException {
+		test = extent.createTest("Collection Report");
 		Thread.sleep(5000);
 		CollectionReportsPage collectionpage = new CollectionReportsPage(driver);
 		collectionpage.CollectionReports_link(url, driver);
+		
 		collectionpage.Select_template(driver);
-		Thread.sleep(10000);
+		Thread.sleep(5000);
+		collectionpage.Select_payment_option_cheque(driver);  // for cheque reports 
+		Thread.sleep(5000);									  //	
+		collectionpage.status_inprocess(driver);			  // for inprocess option 	
+		Thread.sleep(5000);									  // 
+		collectionpage.Select_all_payment_modes(driver);	  // 
+		Thread.sleep(5000);
+		String collectionoptionsSelected = null;
+		try {
+			collectionoptionsSelected = TakeScreenshoot.GetScreenshotFullBase64(driver);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		test.pass("Selected Collection Reports Options ✔",MediaEntityBuilder.createScreenCaptureFromBase64String(collectionoptionsSelected).build());
 		collectionpage.scrollToBottom(driver);
 		collectionpage.Click_date_box(driver,"1");
 		Thread.sleep(5000);
 		collectionpage.Click_generate_btn(driver);
 	}
 	
-		
+	@AfterTest
+    public void tearDown() {
+ //       if (driver != null) {
+ //           driver.quit();
+ //      }
+        extent.flush();
+    }
+
 	
 }

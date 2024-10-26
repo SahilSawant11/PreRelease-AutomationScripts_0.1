@@ -3,13 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="Reports.QualityControlReports">
+      <class name="Reports.CollectionReports">
         <methods>
+          <include name="collectiontest"/>
           <include name="beforetest"/>
-          <include name="Defaulter_report_test"/>
           <include name="tearDown"/>
         </methods>
-      </class> <!-- Reports.QualityControlReports -->
+      </class> <!-- Reports.CollectionReports -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
