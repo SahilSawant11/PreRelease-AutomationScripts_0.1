@@ -122,6 +122,8 @@ try {
 		
 		ClearChequeBtn.click();
 		Thread.sleep(500);
+		
+		
 	}
 	
 	public void Yes_popUp(WebDriver driver) throws InterruptedException

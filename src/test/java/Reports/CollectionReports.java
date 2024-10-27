@@ -1,6 +1,7 @@
 package Reports;
 
 import java.io.IOException;
+import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.lang3.time.StopWatch;
@@ -46,8 +47,8 @@ public class CollectionReports extends BaseDriver {
 		LoginPage loginpage = new LoginPage(driver);
 		loginpage.Enter_user_name(userid, driver);	
 		loginpage.Enter_password(password);
-		Thread.sleep(10000);
-		loginpage.Click_login_btn(driver);
+		Scanner scanner = new Scanner(System.in);
+        System.out.print("Can We start Automation: ");
 		
 		try
 		{

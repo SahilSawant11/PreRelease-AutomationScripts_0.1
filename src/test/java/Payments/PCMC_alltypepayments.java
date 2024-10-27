@@ -10,7 +10,7 @@ import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.lang3.time.StopWatch;
-
+import org.openqa.selenium.JavascriptExecutor;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
@@ -209,19 +209,18 @@ public class PCMC_alltypepayments extends BaseDriver{
 		counterpayment.Click_ProceedAdvancePay(driver);
 		counterpayment.Enter_email_id(driver, "abc@123.gmail.com");
 		counterpayment.Enter_mobile_no(driver, "1111111111");
-		counterpayment.Select_bill_book_no("TEST2425");
 		//counterpayment.Select_payment_mode("Cash");
 //		counterpayment.Enter_behalf_payer_name(driver, "abc");
 			
 		/////
 		stopWatch.reset();
 		stopWatch.start();
-		counterpayment.Click_pay_now(driver);
+		counterpayment.PCMC_Click_pay_now(driver);
 		counterpayment.confirm_payment(driver);
 		counterpayment.Check_transaction_id(driver);
 		counterpayment.Click_receipts_btn(driver);
 		counterpayment.label_downloadReceipt(driver);
-		counterpayment.downloadReceipt(driver);
+		counterpayment.pcmc_DownloadReceipt(driver);
 		
 		test.info("Time duration of Searching property on counter payment page: "+TimeUnit.NANOSECONDS.toSeconds(stopWatch.getNanoTime())+" sec.");
 		stopWatch.stop();
@@ -266,7 +265,7 @@ public class PCMC_alltypepayments extends BaseDriver{
 		counterpayment.Select_payment_mode("Cheque");
 		counterpayment.Select_bankname(driver, "Bank OF India(BOI)");
 //		counterpayment.Enter_behalf_payer_name(driver, "abc");
-			counterpayment.Enter_cheque_dd_transation_no(driver, "11223344");
+			counterpayment.Enter_cheque_dd_transation_no(driver, "1122334");
 			LocalDate today = LocalDate.now();
 			
 			 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -325,7 +324,7 @@ public class PCMC_alltypepayments extends BaseDriver{
 		DDChequeclearPage DDchequeapproval = new DDChequeclearPage(driver);
 		DDchequeapproval.DDchequeApprovalpage(url, driver);
 		DDchequeapproval.pageloading(driver);
-		DDchequeapproval.Enter_ChequeNo("11223344", driver);
+		DDchequeapproval.Enter_ChequeNo("1122334", driver);
 		DDchequeapproval.SelectNode_filter(node2, driver);
 		
 		
@@ -338,8 +337,15 @@ public class PCMC_alltypepayments extends BaseDriver{
 		test.pass("selected Cheque for Clearence",MediaEntityBuilder.createScreenCaptureFromBase64String(chequeforclearence).build());
 		
 		stopWatch.start();
+		
+		 JavascriptExecutor js = (JavascriptExecutor) driver;
+	        js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
+		
+	        Thread.sleep(3000);
 		DDchequeapproval.ChequeclearBtn(driver);
+		 Thread.sleep(3000);
 		DDchequeapproval.Yes_popUp(driver);
+		
 		DDchequeapproval.WaitTillGetClear(driver);
 		test.info("Time duration of Clearing Cheque was: "+TimeUnit.NANOSECONDS.toSeconds(stopWatch.getNanoTime())+" sec.");
 		stopWatch.stop();
@@ -405,26 +411,10 @@ public class PCMC_alltypepayments extends BaseDriver{
 		offlinepaymentpage.Click_search_property();
 			
 		counterpayment = new CounterPaymentPage(driver);
-		counterpayment.Select_Finalcheckbox(driver);
-		Thread.sleep(5000);
+		
 		
 	
 		
-		if (node3=="PMC") {
-			
-			try {
-				counterpayment.Select_APartcheckbox(driver);
-				try {
-					counterpayment.confirm_payment(driver);
-				} catch (Exception e) {
-					// TODO: handle exception
-				}
-			} catch (Exception e1) {
-				
-			}
-			
-			
-		}
 		
 		
 		String counterpaymentscreen=TakeScreenshoot.GetScreenshotFullBase64(driver);
@@ -432,7 +422,6 @@ public class PCMC_alltypepayments extends BaseDriver{
 	
 		counterpayment.Enter_email_id(driver, "abc@123.gmail.com");
 		counterpayment.Enter_mobile_no(driver, "1111111111");
-		counterpayment.Select_bill_book_no("TEST2425");
 		counterpayment.Select_payment_mode("Card Payment");
 		counterpayment.Select_bankname(driver, "Bank OF India(BOI)");
 		Thread.sleep(4000);
@@ -460,12 +449,12 @@ public class PCMC_alltypepayments extends BaseDriver{
 		stopWatch.reset();
 		stopWatch.start();
 		Thread.sleep(2000);
-		counterpayment.Click_pay_now(driver);
+		counterpayment.PCMC_Click_pay_now(driver);
 		counterpayment.confirm_payment(driver);
 		counterpayment.Check_transaction_id(driver);
 		counterpayment.Click_receipts_btn(driver);
 		counterpayment.label_downloadReceipt(driver);
-		counterpayment.downloadReceipt(driver);
+		counterpayment.pcmc_DownloadReceipt(driver);
 		
 		test.info("Time duration of Searching property on counter payment page: "+TimeUnit.NANOSECONDS.toSeconds(stopWatch.getNanoTime())+" sec.");
 		stopWatch.stop();
